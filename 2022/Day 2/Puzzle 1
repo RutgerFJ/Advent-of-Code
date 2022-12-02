@@ -9,16 +9,15 @@ def calculate():
 
     elf_hands, hands = ['A', 'B', 'C'], ['X', 'Y', 'Z']
     matches = [(e, h) for e in elf_hands for h in hands]
-    return order, outcomes, matches
+    
+    score_dict = dict.fromkeys(combinations, 0)
+    for i in order:
+        score_dict.update({combinations[i]: scores[index_numbers[i]]})
+    return score_dictionary
 
 
 def main():
-    index_numbers, scores, combinations = calculate()
-
-    score_dict = dict.fromkeys(combinations, 0)
-    for i in index_numbers:
-        score_dict.update({combinations[i]: scores[index_numbers[i]]})
-
+    score_dict = calculate()
     score = 0
     with open('input.txt', 'r') as f:
         for line in f:
