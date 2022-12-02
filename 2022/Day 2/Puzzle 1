@@ -10,9 +10,9 @@ def calculate():
     elf_hands, hands = ['A', 'B', 'C'], ['X', 'Y', 'Z']
     matches = [(e, h) for e in elf_hands for h in hands]
     
-    score_dict = dict.fromkeys(combinations, 0)
+    score_dictionary = dict.fromkeys(combinations, 0)
     for i in order:
-        score_dict.update({combinations[i]: scores[index_numbers[i]]})
+        score_dictionary.update({combinations[i]: scores[index_numbers[i]]})
     return score_dictionary
 
 
