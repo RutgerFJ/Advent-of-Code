@@ -1,8 +1,6 @@
 def calculate():
     h_score, m_score, outcomes, order = [1, 2, 3], [3, 0, 6], [], []
-    count = 0
     for x in range(3):
-        count += 1
         for y in range(3):
             outcomes.append((h_score[x] + m_score[(y - x % 3)]))
             order.append(x % 3 + 3 * y)
