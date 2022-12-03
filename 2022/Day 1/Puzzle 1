@@ -1,7 +1,7 @@
 def main():
     calories_per_elf = []
     calories = 0
-    with open('elves.txt', 'r') as f:
+    with open('input.txt', 'r') as f:
         for line in f:
             if line != "\n":
                 calories += int(line)
