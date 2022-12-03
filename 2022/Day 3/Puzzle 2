@@ -1,10 +1,8 @@
-def main():
-    alphabet, score = [], 0
-    for lowercase in range(97, 123):
-        alphabet.append(chr(lowercase))
-    for uppercase in range(65, 91):
-        alphabet.append(chr(uppercase))
+from string import ascii_letters as alphabet
 
+
+def main():
+    score = 0
     with open('input.txt', 'r') as f:
         reader = [l for l in f.read().rstrip('\n').split('\n')]
     for x in range(len(reader))[0::3]:
