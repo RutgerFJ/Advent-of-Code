@@ -1,25 +1,16 @@
-def construct_alphabets():
-    alphabets = []
-    for lowercase in range(97, 123):
-        alphabets.append(chr(lowercase))
-    for uppercase in range(65, 91):
-        alphabets.append(chr(uppercase))
-    return alphabets
-
-
 def main():
-    with open('input.txt', 'r') as f:
-        reader = f.readlines()
+    alphabet, score = [], 0
+    for lowercase in range(97, 123):
+        alphabet.append(chr(lowercase))
+    for uppercase in range(65, 91):
+        alphabet.append(chr(uppercase))
 
-    alphabet = construct_alphabets()
-    score = 0
+    with open('input.txt', 'r') as f:
+        reader = [l for l in f.read().rstrip('\n').split('\n')]
     for x in range(len(reader))[0::3]:
-        found = ''
-        elf_1 = reader[x].strip('\n')
-        elf_2 = reader[x + 1].strip('\n')
-        elf_3 = reader[x + 2].strip('\n')
-        for char in elf_1:
-            if char not in found and char in elf_2 and char in elf_3:
+        e_1, e_2, e_3, found = reader[x], reader[x + 1], reader[x + 2], ''
+        for char in e_1:
+            if char not in found and char in e_2 and char in e_3:
                 found += char
                 score += alphabet.index(char) + 1
     print(score)
