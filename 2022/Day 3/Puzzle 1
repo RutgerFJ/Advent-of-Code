@@ -1,9 +1,9 @@
 def main():
-    alphabets, score = [], 0
+    alphabet, score = [], 0
     for lowercase in range(97, 123):
-        alphabets.append(chr(lowercase))
+        alphabet.append(chr(lowercase))
     for uppercase in range(65, 91):
-        alphabets.append(chr(uppercase))
+        alphabet.append(chr(uppercase))
 
     with open('input.txt', 'r') as f:
         reader = [l for l in f.read().rstrip('\n').split('\n')]
@@ -12,7 +12,7 @@ def main():
             for char in line[0:int(len(line)/2):]:
                 if char in line[int(len(line)/2)::] and char not in found:
                     found += char
-                    score += alphabets.index(char) + 1
+                    score += alphabet.index(char) + 1
     print(score)
 
 main()
