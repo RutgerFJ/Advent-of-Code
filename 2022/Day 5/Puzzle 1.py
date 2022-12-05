@@ -10,10 +10,7 @@ def main():
         stax[int(m[5])-1] = stax[int(m[3])-1][0:int(m[1])] + stax[int(m[5])-1]
         stax[int(m[3])-1] = stax[int(m[3])-1][int(m[1])::]
 
-    top_layer = ''
-    for s in stax:
-        top_layer += s[0]
-    print(top_layer)
+    print(''.join([s[0] for s in stax]))
 
 
 main()
