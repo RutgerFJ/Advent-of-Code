@@ -15,4 +15,5 @@ def main():
 
     print(len(total_parsed))
 
+    
 main()
