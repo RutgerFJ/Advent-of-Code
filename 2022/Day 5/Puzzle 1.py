@@ -7,7 +7,7 @@ def main():
     moves = [ln.split(' ') for ln in data if ln.split(' ')[0] == 'move']
 
     for m in moves:
-        s[int(m[5])-1] = s[int(m[3])-1][0:int(m[1])] + s[int(m[5])-1]
+        s[int(m[5])-1] = s[int(m[3])-1][0:int(m[1])][::-1] + s[int(m[5])-1]
         s[int(m[3])-1] = s[int(m[3])-1][int(m[1])::]
 
     print(''.join([i[0] for i in s]))
