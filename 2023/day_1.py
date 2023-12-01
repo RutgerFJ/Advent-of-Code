@@ -40,7 +40,6 @@ def part_two(inp):
     return sum(file_digits)
 
 
-
 def main():
     with open('input.txt', 'r') as f:
         content = [line.strip() for line in f]
