@@ -24,9 +24,9 @@ part_two() {
                 color=$(i+1);
                 if (number > max[color]) {
                     max[color]=number;
+                    }
                 }
             }
-        }
         END {
             print max["blue"] * max["red"] * max["green"];
             }'
