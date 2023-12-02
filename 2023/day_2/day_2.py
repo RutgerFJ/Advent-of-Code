@@ -33,7 +33,7 @@ def part_two(inp):
 
 
 def main():
-    with open('./AoC2023/Day 2/input.txt', 'r') as f:
+    with open('input.txt', 'r') as f:
         content = [line for line in f]
 
     print(part_one(content))
