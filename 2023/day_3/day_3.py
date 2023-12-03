@@ -40,7 +40,7 @@ def part_two(inp):
 
                 c = ((x + ij[0], y + ij[1]) for ij in 
                      [(i, j) for i in range(-1, 2) for j in range(-1, 2)] 
-                     if x + ij[0] in range(140) and y + ij[1] in range(140))
+                     if x + ij[0] in range(len(line)) and y + ij[1] in range(len(inp)))
                 for xy in c:
                     if inp[xy[1]][xy[0]] == '*':
                         gear = (xy[1], xy[0])
