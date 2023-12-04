@@ -1,23 +1,23 @@
 def part_one(inp):
-    card_sums = {x: 0.5 for x in range(len(inp))}
+    card_sums = [0.5] * len(inp)
 
     for x, ln in enumerate(inp):
         wins = [num for num in ln[10:40].split() if num in ln[42:].split()]
-        for _ in wins:
+        for _ in range(len(wins)):
             card_sums[x] *= 2
 
-    return sum(int(val) for val in card_sums.values())
+    return sum(int(x) for x in card_sums)
 
 
 def part_two(inp):
-    won_cards = {x: 1 for x in range(len(inp))}
-
+    won_cards = [1] * len(inp)
+    
     for x, ln in enumerate(inp):
-        wins = [num for num in ln[10:40].split() if num in ln[42:].split()]
+        wins = [num for num in ln[10:40].split() if num in ln[42:].split()]        
         for y in range(x + 1, x + len(wins) + 1):
             won_cards[y] += won_cards[x]
     
-    return sum(won_cards.values())
+    return sum(won_cards)
 
 
 def main():
