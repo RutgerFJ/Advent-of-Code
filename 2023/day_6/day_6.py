@@ -16,7 +16,7 @@ def part_two(inp):
 
 
 def main():
-    with open('./AoC2023/Day 6/input.txt', 'r') as f:
+    with open('input.txt', 'r') as f:
         content = [line.split()[1:] for line in f]
 
     print(part_one(content))
