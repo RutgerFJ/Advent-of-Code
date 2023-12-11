@@ -28,7 +28,7 @@ def map_universe(inp):
             for x, col in enumerate(row):
 
                 if col == '#':
-                    galaxies.append((y, x)) # not sure if there's a reason for y, x or x, y idk lets see
+                    galaxies.append((y, x))
                     continue
         else:
             expanded_y.append(y)
