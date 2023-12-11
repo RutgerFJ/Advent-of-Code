@@ -1,18 +1,11 @@
 from itertools import combinations
 
 
-def manhattan_parser(a, b, x1, y1, x2, y2):
-    path_coordinates = []
+def manhattan_parser(x1, y1, x2, y2):
+    x = [(x, y1) for x in range(x1, x2, 1 if x2 > x1 else -1)]
+    y = [(x2, y) for y in range(y1, y2, 1 if y2 > y1 else -1)]
 
-    for x in range(x1, x2, 1 if x2 > x1 else -1):
-        path_coordinates.append((x, y1))
-
-    for y in range(y1, y2, 1 if y2 > y1 else -1):
-        path_coordinates.append((x2, y))
-
-    distance = abs(a[0] - b[0]) + abs(a[1] - b[1])
-
-    return path_coordinates, distance
+    return x + y, abs(x1 - x2) + abs(y1 - y2)
 
 
 def part_one_or_two(inp, expansion):
@@ -27,7 +20,7 @@ def part_one_or_two(inp, expansion):
 
     return sum(manh_dist + sum([expansion for y, x in path if y in exp_y or x in exp_x])
                for a, b in combinations(galaxies, 2)
-               for path, manh_dist in [manhattan_parser(a, b, *a, *b)])
+               for path, manh_dist in [manhattan_parser(*a, *b)])
 
 
 if __name__ == '__main__':
