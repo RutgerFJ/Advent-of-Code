@@ -1,11 +1,10 @@
-def get_pipe_start(inp):
+def initiate_pipe(inp):
     for y, row in enumerate(inp):
-        for x in range(len(row)):
-            if inp[y][x] == 'S':
-                return (y, x)
+        if row.find('S') != -1:
+            return set(), (y, row.index('S'))
 
 
-def get_move(char, direction, coord):
+def get_move(char, direction, row, col):
     moves = {
         '|N': (-1,  0, 'N'),
         '|S': ( 1,  0, 'S'),
@@ -19,27 +18,28 @@ def get_move(char, direction, coord):
         '7E': ( 1,  0, 'S'),
         'FN': ( 0,  1, 'E'),
         'FW': ( 1,  0, 'S'),
-        'SS': ( 0,  1, 'E'),
-        'SN': (-1,  0, 'N'),
+        'SS': ( 0,  1, 'E'), # hardcoded & input-specific
+        'SW': (-1,  0, 'N')  # hardcoded & input-specific
     }
-
-    y, x, dir = moves[''.join([char, direction])]
-    return ((coord[0] + y, coord[1] + x), dir)
+    y, x, dir = moves[char + direction]
+    return row + y, col + x, dir
 
 
 def find_adjacent(row, y, x, pipe):
     return sum([1 for i, char in enumerate(row) 
-                if i > x and char in 'SJL|' and (y, i) in pipe])
+                if i > x and char in '|SJL' # '|SJL' and '|S7F' are both valid
+                and (y, i) in pipe])
 
 
 def map_pipe(inp):
-    pipe, startpoint, direction = set(), get_pipe_start(inp), 'N'
-    coord = startpoint
+    pipe, startpoint = initiate_pipe(inp)
+    row, col = startpoint
+    direction = 'W' # hardcoded & input-specific
 
     while True:
-        coord, direction = get_move(inp[coord[0]][coord[1]], direction, coord)
-        pipe.add(coord)
-        if coord == startpoint:
+        row, col, direction = get_move(inp[row][col], direction, row, col)
+        pipe.add((row, col))
+        if (row, col) == startpoint:
             break
 
     return pipe
@@ -52,21 +52,17 @@ def part_one(inp):
 def part_two(inp):
     pipe = map_pipe(inp)
     enclosed = 0
-
     for y, row in enumerate(inp):
-        for x in range(len(row)):
-            if (y, x) not in pipe and find_adjacent(row, y, x, pipe) % 2 != 0:
-                enclosed += 1
+        enclosed += sum([1 for x in range(len(row)) 
+                         if (y, x) not in pipe and 
+                         find_adjacent(row, y, x, pipe) % 2 != 0])
 
     return enclosed
 
 
-def main():
+if __name__ == '__main__':
     with open('./2023/Day 10/input.txt') as f:
         content = [line.strip() for line in f]
 
     print(part_one(content))
     print(part_two(content))
-
-
-main()

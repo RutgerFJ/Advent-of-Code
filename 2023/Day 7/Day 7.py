@@ -41,12 +41,9 @@ def part_two(inp):
     return part_one([(hand.replace('J', 'X'), bid) for hand, bid in inp])
 
 
-def main():
-    with open('input.txt', 'r') as f:
+if __name__ == '__main__':
+    with open('./2023/Day 7/input.txt', 'r') as f:
         content = [line.split() for line in f]
 
     print(part_one(content))
     print(part_two(content))
-
-
-main()

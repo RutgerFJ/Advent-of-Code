@@ -39,12 +39,9 @@ def part_two(inp):
     return sum(file_digits)
 
 
-def main():
-    with open('input.txt', 'r') as f:
+if __name__ == '__main__':
+    with open('./2023/Day 1/input.txt', 'r') as f:
         content = [line.strip() for line in f]
     
     print(part_one(content))
     print(part_two(content))
-
-
-main()

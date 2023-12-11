@@ -15,12 +15,9 @@ def part_two(inp):
     return sum([1 for t in range(1, time) if t * (time - t) > dist])
 
 
-def main():
-    with open('input.txt', 'r') as f:
+if __name__ == '__main__':
+    with open('./2023/Day 6/input.txt', 'r') as f:
         content = [line.split()[1:] for line in f]
 
     print(part_one(content))
     print(part_two(content))
-
-
-main()
