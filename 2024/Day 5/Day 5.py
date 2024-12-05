@@ -2,16 +2,12 @@ def part_one(rules, updates):
     total = 0
 
     for up in updates:
-        valid = True
-
-        for rule in rules:
-            if all(x in up for x in rule):
-                if up.index(rule[0]) > up.index(rule[1]):
-                    valid = False
-
-        if valid:
-            middle = int(len(up) / 2)
-            total += up[middle]
+        if not any(
+            up.index(rule[0]) > up.index(rule[1])
+            for rule in rules
+            if all(x in up for x in rule)
+        ):
+            total += up[int(len(up) / 2)]
 
     return total
 
@@ -19,12 +15,11 @@ def part_one(rules, updates):
 def fix_order(up, rules):
     for _ in range(10):  # Not very proud of this one
         for rule in rules:
-            if all(x in up for x in rule):
-                if up.index(rule[0]) > up.index(rule[1]):
-                    up[up.index(rule[0])], up[up.index(rule[1])] = (
-                        up[up.index(rule[1])],
-                        up[up.index(rule[0])],
-                    )
+            if all(x in up for x in rule) and up.index(rule[0]) > up.index(rule[1]):
+                up[up.index(rule[0])], up[up.index(rule[1])] = (
+                    up[up.index(rule[1])],
+                    up[up.index(rule[0])],
+                )
 
     return up
 
@@ -33,17 +28,13 @@ def part_two(rules, updates):
     total = 0
 
     for up in updates:
-        valid = True
-
-        for rule in rules:
-            if all(x in up for x in rule):
-                if up.index(rule[0]) > up.index(rule[1]):
-                    valid = False
-
-        if not valid:
+        if any(
+            up.index(rule[0]) > up.index(rule[1])
+            for rule in rules
+            if all(x in up for x in rule)
+        ):
             fixed_up = fix_order(up, rules)
-            middle = int(len(fixed_up) / 2)
-            total += fixed_up[middle]
+            total += fixed_up[int(len(fixed_up) / 2)]
 
     return total
 
